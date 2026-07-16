@@ -13,7 +13,7 @@ import {
   wrap,
 } from "framer-motion";
 import { ShotTile } from "@/components/ShotTile";
-import { TECH_TILES } from "@/lib/content";
+import { TECH_TILES, withBase } from "@/lib/content";
 
 type RowProps = {
   children: ReactNode;
@@ -86,12 +86,12 @@ export function Marquee() {
   const shots = (
     <>
       <ShotTile
-        src="/projects/vissort.png"
+        src={withBase("/projects/vissort.png")}
         label="VisSort"
         alt="VisSort sorting-algorithm visualizer preview"
       />
       <ShotTile
-        src="/projects/fitmacro.png"
+        src={withBase("/projects/fitmacro.png")}
         label="FitMacro"
         alt="FitMacro meal-tracker app preview"
       />

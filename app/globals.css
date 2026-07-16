@@ -256,7 +256,8 @@ body {
   pointer-events: none;
   opacity: 0.04;
   mix-blend-mode: overlay;
-  background-image: url("/noise.svg");
+  /* Prefixed with the GitHub Pages project basePath (see next.config.mjs). */
+  background-image: url("/mutasim-abbas-portfolio/noise.svg");
   background-size: 180px 180px;
 }
 

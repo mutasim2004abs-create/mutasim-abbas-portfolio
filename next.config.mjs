@@ -2,8 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
-  // Static export for GitHub Pages (user site at the domain root, no basePath).
+  // Static export served as a GitHub Pages project site.
   output: "export",
+  basePath: "/mutasim-abbas-portfolio",
   images: { unoptimized: true },
 };
 

@@ -13,7 +13,7 @@ import "@fontsource/jetbrains-mono/500.css";
 
 import "./globals.css";
 
-const SITE_URL = "https://mutasim2004abs-create.github.io";
+const SITE_URL = "https://mutasim2004abs-create.github.io/mutasim-abbas-portfolio";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

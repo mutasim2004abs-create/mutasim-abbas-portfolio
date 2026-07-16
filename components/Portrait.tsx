@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Code2 } from "lucide-react";
+import { withBase } from "@/lib/content";
 
 type PortraitProps = {
   /** Real files at /public/portrait.jpg (side) + /public/portrait-front.jpg (front). */
@@ -19,7 +20,7 @@ type PortraitProps = {
  * never a broken-image icon. The global reduced-motion rule pauses the fade.
  */
 export function Portrait({
-  sources = ["/portrait.jpg", "/portrait-front.jpg"],
+  sources = [withBase("/portrait.jpg"), withBase("/portrait-front.jpg")],
   alt,
   caption = "mutasim // portrait pending",
 }: PortraitProps) {

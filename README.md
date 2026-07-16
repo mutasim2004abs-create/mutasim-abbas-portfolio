@@ -2,7 +2,7 @@
 
 High-end single-page portfolio, designed and built as a working proof of skill.
 
-**▶ Live: https://mutasim2004abs-create.github.io/**
+**▶ Live: https://mutasim2004abs-create.github.io/mutasim-abbas-portfolio/**
 
 ## Stack
 

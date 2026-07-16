@@ -9,7 +9,7 @@ import {
   useReducedMotion,
   type MotionValue,
 } from "framer-motion";
-import { ABOUT_PARAGRAPHS } from "@/lib/content";
+import { ABOUT_PARAGRAPHS, withBase } from "@/lib/content";
 
 type WordToken = { text: string; serif: boolean; accent: boolean };
 
@@ -86,7 +86,7 @@ export function About() {
         <div className="glass overflow-hidden rounded-[40px] lg:sticky lg:top-28">
           <div className="relative aspect-[4/5] w-full">
             <Image
-              src="/portrait-front.jpg"
+              src={withBase("/portrait-front.jpg")}
               alt="Mutasim Abbas"
               fill
               sizes="(max-width: 1024px) 100vw, 340px"

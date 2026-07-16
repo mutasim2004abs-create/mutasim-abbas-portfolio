@@ -3,6 +3,14 @@
  * No fabricated data — every link and metric here is real.
  */
 
+/**
+ * GitHub Pages project-site base path (must match basePath in next.config.mjs).
+ * next/image with `unoptimized` passes src through as-is, so static assets in
+ * /public must be prefixed manually.
+ */
+export const BASE_PATH = "/mutasim-abbas-portfolio";
+export const withBase = (path: string) => `${BASE_PATH}${path}`;
+
 export const LINKS = {
   github: "https://github.com/mutasim2004abs-create",
   linkedin: "https://www.linkedin.com/in/mutasim-abbas-063740410/",
@@ -100,8 +108,7 @@ export const STAR_PROJECTS: Project[] = [
     ],
     liveUrl: "https://mutasim2004abs-create.github.io/VisSort/",
     repoUrl: "https://github.com/mutasim2004abs-create/VisSort",
-    // SWAP: drop real screenshot at /public/projects/vissort.png (capture from live URL)
-    shot: "/projects/vissort.png",
+    shot: withBase("/projects/vissort.png"),
     shotAlt:
       "VisSort user interface showing an interactive sorting-algorithm visualization with bar columns and controls",
   },
@@ -119,8 +126,7 @@ export const STAR_PROJECTS: Project[] = [
     ],
     liveUrl: "https://mutasim2004abs-create.github.io/Front-end/",
     repoUrl: "https://github.com/mutasim2004abs-create/Front-end",
-    // SWAP: drop real screenshot at /public/projects/fitmacro.png (capture from local fitmacro.html)
-    shot: "/projects/fitmacro.png",
+    shot: withBase("/projects/fitmacro.png"),
     shotAlt:
       "FitMacro meal-tracker interface with a dark and gold theme showing macro totals for calories, protein, carbs and fat",
     gold: true,
