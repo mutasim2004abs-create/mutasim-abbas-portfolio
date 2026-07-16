@@ -5,13 +5,22 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { Reveal } from "@/components/Reveal";
 import { SKILL_GROUPS, SPOKEN_LANGUAGES } from "@/lib/content";
 
-function Chip({ glyph, name }: { glyph: string; name: string }) {
+function Chip({
+  glyph,
+  name,
+  level,
+}: {
+  glyph: string;
+  name: string;
+  level?: string;
+}) {
   return (
     <span className="inline-flex min-h-[36px] items-center gap-2 rounded-[12px] border border-[var(--border)] bg-card-2 px-3 py-1.5 label-mono text-text">
       <span aria-hidden className="text-accent">
         {glyph}
       </span>
       {name}
+      {level ? <span className="text-text-muted">· {level}</span> : null}
     </span>
   );
 }
@@ -52,7 +61,12 @@ export function Skills() {
           <GroupCard key={group.label} label={group.label} index={i}>
             <div className="flex flex-wrap gap-2.5">
               {group.items.map((item) => (
-                <Chip key={item.name} glyph={item.glyph} name={item.name} />
+                <Chip
+                  key={item.name}
+                  glyph={item.glyph}
+                  name={item.name}
+                  {...(item.level ? { level: item.level } : {})}
+                />
               ))}
             </div>
           </GroupCard>

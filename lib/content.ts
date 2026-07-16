@@ -28,32 +28,33 @@ export const NAV_ITEMS = [
 /** About copy — clear, professional first-person bio. */
 export const ABOUT_PARAGRAPHS: string[] = [
   "I'm Mutasim Abbas, a software engineering student focused on {web development} and building tools that solve real problems.",
-  "I work across the stack with React, TypeScript, Python, Java, and C. My recent projects include VisSort — an interactive sorting-algorithm visualizer — and FitMacro, a nutrition-tracking web app, both designed and built solo.",
+  "I work mainly in Java, Python, and C, and I build for the web with HTML, CSS, and JavaScript — with React being what I'm learning right now. My projects include VisSort, an interactive sorting-algorithm visualizer, and FitMacro, a nutrition-tracking web app.",
   "I care about the details that separate code that works from code that's well made: tests, accessibility, and a clean interface. Right now I'm going deeper into AI and modern web development.",
   "I speak Arabic, Turkish, and English.",
 ];
 
 export type SkillGroup = {
   label: string;
-  items: { name: string; glyph: string }[];
+  /** `level` is stated honestly — no bar charts, no implied mastery. */
+  items: { name: string; glyph: string; level?: string }[];
 };
 
 export const SKILL_GROUPS: SkillGroup[] = [
   {
     label: "LANGUAGES",
     items: [
-      { name: "Java", glyph: "{ }" },
-      { name: "Python", glyph: ">_" },
-      { name: "C", glyph: "#" },
-      { name: "JavaScript / TypeScript", glyph: "TS" },
+      { name: "Java", glyph: "{ }", level: "intermediate" },
+      { name: "Python", glyph: ">_", level: "intermediate" },
+      { name: "C", glyph: "#", level: "intermediate" },
+      { name: "JavaScript", glyph: "JS", level: "intermediate" },
     ],
   },
   {
     label: "WEB",
     items: [
-      { name: "React", glyph: "()" },
-      { name: "HTML", glyph: "</>" },
-      { name: "CSS", glyph: "#{}" },
+      { name: "HTML", glyph: "</>", level: "confident" },
+      { name: "CSS", glyph: "#{}", level: "confident" },
+      { name: "React", glyph: "()", level: "learning" },
     ],
   },
   {
