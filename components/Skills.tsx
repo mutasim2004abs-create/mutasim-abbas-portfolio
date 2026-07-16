@@ -1,6 +1,6 @@
 "use client";
 
-import { Languages, Wrench } from "lucide-react";
+import { Languages } from "lucide-react";
 import { SectionHeading } from "@/components/SectionHeading";
 import { Reveal } from "@/components/Reveal";
 import { SKILL_GROUPS, SPOKEN_LANGUAGES } from "@/lib/content";
@@ -80,29 +80,6 @@ export function Skills() {
         </GroupCard>
       </div>
 
-      {/* Discipline strip — personality, not a skill bar */}
-      <Reveal index={1} className="mt-4">
-        <div className="glass flex flex-col items-start gap-3 rounded-[40px] p-7 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-center gap-4">
-            <span
-              aria-hidden
-              className="grid h-11 w-11 place-items-center rounded-full bg-card-2 text-accent"
-            >
-              <Wrench size={20} strokeWidth={1.5} />
-            </span>
-            <div>
-              <p className="label-mono uppercase tracking-[0.16em] text-accent">
-                Discipline
-              </p>
-              <p className="h3-sub text-text">Boxing · 2 years</p>
-            </div>
-          </div>
-          <p className="body-copy max-w-[38ch] text-text-body">
-            The focus and consistency I built through training are the same ones
-            I bring to writing and shipping code.
-          </p>
-        </div>
-      </Reveal>
     </section>
   );
 }

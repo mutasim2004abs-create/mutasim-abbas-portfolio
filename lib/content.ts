@@ -30,7 +30,7 @@ export const ABOUT_PARAGRAPHS: string[] = [
   "I'm Mutasim Abbas, a software engineering student focused on {web development} and building tools that solve real problems.",
   "I work across the stack with React, TypeScript, Python, Java, and C. My recent projects include VisSort — an interactive sorting-algorithm visualizer — and FitMacro, a nutrition-tracking web app, both designed and built solo.",
   "I care about the details that separate code that works from code that's well made: tests, accessibility, and a clean interface. Right now I'm going deeper into AI and modern web development.",
-  "Outside of coding, two years of boxing taught me discipline and consistency, and I speak Arabic, Turkish, and English.",
+  "I speak Arabic, Turkish, and English.",
 ];
 
 export type SkillGroup = {
