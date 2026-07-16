@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:github.com)",
+      "Read(//c/Users/asoom/.claude/skills/ui-ux-pro-max/scripts/**)",
+      "Bash(python search.py \"developer portfolio dark technical\" --domain product --json)",
+      "Bash(python search.py \"dark green accent code portfolio\" --domain color --json)"
+    ]
+  }
+}

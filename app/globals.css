@@ -1,0 +1,360 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* ---- Backgrounds ---- */
+  --bg: #070b0a;
+  --bg-elevated: #0a100e;
+  --card: #0e1512;
+  --card-2: #101a16;
+
+  /* ---- Accent (code green) ---- */
+  --accent: #5ed29c;
+  --accent-bright: #7de0b0;
+  --accent-dim: #3fa87a;
+  --accent-ink: #04110b;
+  --cyan: #6fe9e0;
+
+  /* ---- Text ---- */
+  --text: #ffffff;
+  --text-body: #b4c0ba;
+  --text-muted: #8a968f;
+
+  /* ---- Borders / glass / glow ---- */
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.14);
+  --glass-fill: rgba(20, 32, 27, 0.55);
+  --glass-highlight: rgba(255, 255, 255, 0.06);
+  --grid-line: rgba(94, 210, 156, 0.05);
+  --glow-core: rgba(94, 210, 156, 0.28);
+  --glow-cyan: rgba(111, 233, 224, 0.14);
+  --accent-glow: 0 0 40px rgba(94, 210, 156, 0.35);
+
+  /* ---- Project-specific ---- */
+  --fitmacro-gold: #d4af37;
+
+  /* ---- Elevation ---- */
+  --elev-1: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 8px 24px rgba(0, 0, 0, 0.45);
+  --elev-2: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 20px 60px rgba(0, 0, 0, 0.55);
+  --elev-accent: 0 0 0 1px rgba(94, 210, 156, 0.3), 0 0 40px rgba(94, 210, 156, 0.28);
+
+  /* ---- Motion ---- */
+  --ease-out: cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text-body);
+  font-family: "Inter Variable", Inter, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Selection */
+::selection {
+  background: rgba(94, 210, 156, 0.25);
+  color: #ffffff;
+}
+
+/* ---- Focus visibility (never removed) ---- */
+:focus-visible {
+  outline: 2px solid var(--accent-bright);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---- Typography roles (fluid) ---- */
+.eyebrow {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: clamp(0.72rem, 0.68rem + 0.2vw, 0.8rem);
+  line-height: 1.4;
+  letter-spacing: 0.22em;
+  color: var(--accent);
+}
+
+.h1-hero {
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(2.75rem, 1.6rem + 6.4vw, 6.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+
+.h2-section {
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-weight: 700;
+  font-size: clamp(2rem, 1.2rem + 3.6vw, 3.75rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.h3-sub {
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-weight: 600;
+  font-size: clamp(1.25rem, 1.05rem + 0.9vw, 1.6rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.body-copy {
+  font-size: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+  line-height: 1.65;
+  color: var(--text-body);
+  max-width: 65ch;
+}
+
+.body-large {
+  font-size: clamp(1.35rem, 1.1rem + 1.3vw, 2.1rem);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+.label-mono {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-weight: 500;
+  font-size: clamp(0.75rem, 0.72rem + 0.15vw, 0.85rem);
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+}
+
+.big-number {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-weight: 500;
+  font-size: clamp(3rem, 2rem + 5vw, 7rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.serif-accent {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* ---- Liquid-glass recipe (signature) ---- */
+.glass {
+  position: relative;
+  background: var(--glass-fill);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  box-shadow:
+    inset 0 1px 0 var(--glass-highlight),
+    var(--elev-2);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(94, 210, 156, 0.55) 0%,
+    rgba(255, 255, 255, 0.12) 30%,
+    rgba(255, 255, 255, 0.02) 60%,
+    rgba(94, 210, 156, 0.25) 100%
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  transition: opacity 0.35s var(--ease-out);
+}
+
+/* Card hover brightens the gradient border edge */
+.glass-hover:hover::before {
+  background: linear-gradient(
+    135deg,
+    rgba(94, 210, 156, 0.85) 0%,
+    rgba(255, 255, 255, 0.2) 30%,
+    rgba(255, 255, 255, 0.04) 60%,
+    rgba(94, 210, 156, 0.4) 100%
+  );
+}
+
+.glass--glow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(120% 60% at 50% -10%, var(--glow-core), transparent 60%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Backdrop-filter fallback */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass {
+    background: rgba(14, 21, 18, 0.92);
+  }
+}
+
+/* ---- Global chrome: grid lines ---- */
+.grid-lines {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent calc(50% - 1px),
+    var(--grid-line) calc(50% - 1px),
+    var(--grid-line) 50%
+  );
+}
+
+@media (min-width: 640px) {
+  .grid-lines {
+    background-image: repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent calc(25% - 1px),
+      var(--grid-line) calc(25% - 1px),
+      var(--grid-line) 25%
+    );
+  }
+}
+
+/* ---- Central glow (single light source behind hero) ---- */
+.hero-glow {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    60% 50% at 50% 30%,
+    var(--glow-core),
+    var(--glow-cyan) 40%,
+    transparent 70%
+  );
+}
+
+/* ---- Film grain (subtle VisSort echo) ---- */
+.film-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.04;
+  mix-blend-mode: overlay;
+  background-image: url("/noise.svg");
+  background-size: 180px 180px;
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .film-grain {
+    display: none;
+  }
+}
+
+/* ---- Marquee edge fade ---- */
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+/* ---- Nav animated underline ---- */
+.nav-underline {
+  position: relative;
+}
+.nav-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 1.5px;
+  width: 0;
+  background: var(--accent);
+  transition: width 0.3s var(--ease-out);
+}
+.nav-underline:hover::after,
+.nav-underline[data-active="true"]::after {
+  width: 100%;
+}
+
+/* ---- Skeleton shimmer ---- */
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: var(--card-2);
+}
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(94, 210, 156, 0.06),
+    transparent
+  );
+  animation: shimmer 2s infinite;
+}
+
+/* ---- Portrait crossfade (hero) ---- */
+@keyframes portraitFade {
+  0% {
+    opacity: 0;
+  }
+  12.5% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  62.5% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.portrait-fade {
+  opacity: 0;
+  animation: portraitFade 8s ease-in-out infinite;
+  will-change: opacity;
+}
+
+/* ---- Reduced motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .skeleton::after {
+    animation: none;
+  }
+}
