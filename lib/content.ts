@@ -132,8 +132,7 @@ export const STAR_PROJECTS: Project[] = [
       { value: "317", label: "tests" },
       { value: "4", label: "macros tracked" },
     ],
-    // Live link intentionally omitted until the Vercel deploy is up. Never fabricate a URL.
-    liveUrl: null,
+    liveUrl: "https://fit-macro-ten.vercel.app",
     repoUrl: "https://github.com/mutasim2004abs-create/FitMacro",
     shot: withBase("/projects/fitmacro.png"),
     shotAlt:
