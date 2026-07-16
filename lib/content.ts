@@ -117,15 +117,24 @@ export const STAR_PROJECTS: Project[] = [
     name: "FitMacro",
     category: "Solo · Web App",
     pitch:
-      "AI Meal Tracker — track daily calories, protein, carbs & fat with a diet planner that generates meal plans.",
-    tech: ["HTML", "CSS", "JavaScript", "React"],
-    metrics: [
-      { value: "4", label: "macros tracked" },
-      { value: "AI", label: "diet planner" },
-      { value: "480px", label: "mobile frame" },
+      "Nutrition tracker with a real macro engine (Mifflin-St Jeor), a 184-food database, local-first storage, and AI meal scanning that estimates macros from a photo.",
+    tech: [
+      "Vite",
+      "React 18",
+      "TypeScript (strict)",
+      "Tailwind",
+      "PWA",
+      "Vitest",
+      "Claude API",
     ],
-    liveUrl: "https://mutasim2004abs-create.github.io/Front-end/",
-    repoUrl: "https://github.com/mutasim2004abs-create/Front-end",
+    metrics: [
+      { value: "184", label: "foods" },
+      { value: "317", label: "tests" },
+      { value: "4", label: "macros tracked" },
+    ],
+    // Live link intentionally omitted until the Vercel deploy is up. Never fabricate a URL.
+    liveUrl: null,
+    repoUrl: "https://github.com/mutasim2004abs-create/FitMacro",
     shot: withBase("/projects/fitmacro.png"),
     shotAlt:
       "FitMacro meal-tracker interface with a dark and gold theme showing macro totals for calories, protein, carbs and fat",
