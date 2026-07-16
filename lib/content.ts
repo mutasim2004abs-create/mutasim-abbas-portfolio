@@ -117,8 +117,7 @@ export const STAR_PROJECTS: Project[] = [
       { value: "AI", label: "diet planner" },
       { value: "480px", label: "mobile frame" },
     ],
-    // Live link intentionally omitted — not deployed. Never fabricate a URL.
-    liveUrl: null,
+    liveUrl: "https://mutasim2004abs-create.github.io/Front-end/",
     repoUrl: "https://github.com/mutasim2004abs-create/Front-end",
     // SWAP: drop real screenshot at /public/projects/fitmacro.png (capture from local fitmacro.html)
     shot: "/projects/fitmacro.png",
