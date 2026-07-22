@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, Github } from "lucide-react";
 import { Button } from "@/components/ui/Button";
@@ -16,6 +16,7 @@ type ProjectCardProps = {
 /** Sticky-stacking star project card (§5.5). Degrades to flow under reduced motion. */
 export function ProjectCard({ project, index, total }: ProjectCardProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const articleRef = useRef<HTMLElement>(null);
   const prefersReduced = useReducedMotion();
 
   const targetScale = 1 - (total - 1 - index) * 0.03;
@@ -27,14 +28,52 @@ export function ProjectCard({ project, index, total }: ProjectCardProps) {
 
   const topOffset = `calc(6rem + ${index * 1.5}rem)`;
 
+  /**
+   * Sticky stacking only works while a card still fits on screen. Once a card
+   * is taller than the viewport, `top` pins its head and the tail — which is
+   * exactly where the Live Project and Code buttons are — sits below the fold
+   * at every scroll position, permanently unreachable. Taller cards therefore
+   * fall back to normal flow, which costs the stacking effect on short screens
+   * and keeps the actions clickable, the right way round for that trade.
+   */
+  const [fitsOnScreen, setFitsOnScreen] = useState(false);
+
+  useEffect(() => {
+    const el = articleRef.current;
+    if (!el) return;
+
+    const measure = () => {
+      const rem =
+        parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+      // offsetHeight, not getBoundingClientRect: the latter reports the
+      // *scaled* height while the stacking transform is applied, which would
+      // make an oversized card look like it fits.
+      setFitsOnScreen(el.offsetHeight + (6 + index * 1.5) * rem <= window.innerHeight);
+    };
+
+    measure();
+    // Content reflows as fonts and the preview image load, so re-measure
+    // rather than trusting the first pass.
+    const observer = new ResizeObserver(measure);
+    observer.observe(el);
+    window.addEventListener("resize", measure);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", measure);
+    };
+  }, [index]);
+
+  const stacks = fitsOnScreen && !prefersReduced;
+
   return (
     <div
       ref={ref}
-      className="sticky"
-      style={{ top: prefersReduced ? undefined : topOffset }}
+      className={stacks ? "sticky" : undefined}
+      style={stacks ? { top: topOffset } : undefined}
     >
       <motion.article
-        style={prefersReduced ? undefined : { scale }}
+        ref={articleRef}
+        style={stacks ? { scale } : undefined}
         className="glass glass-hover relative overflow-hidden rounded-[48px] p-[clamp(1.5rem,4vw,3.5rem)]"
       >
         {/* Whole-card link → project repository (buttons below sit above this). */}
