@@ -26,17 +26,21 @@ export function ProjectCard({ project, index, total }: ProjectCardProps) {
   });
   const scale = useTransform(scrollYProgress, [0, 1], [1, targetScale]);
 
-  const topOffset = `calc(6rem + ${index * 1.5}rem)`;
-
   /**
-   * Sticky stacking only works while a card still fits on screen. Once a card
-   * is taller than the viewport, `top` pins its head and the tail — which is
-   * exactly where the Live Project and Code buttons are — sits below the fold
-   * at every scroll position, permanently unreachable. Taller cards therefore
-   * fall back to normal flow, which costs the stacking effect on short screens
-   * and keeps the actions clickable, the right way round for that trade.
+   * Where the card pins while stacking.
+   *
+   * The designed offset steps each card down a little so the decks' top edges
+   * peek out. That works only while the card still fits beneath it — a card
+   * taller than the remaining viewport pins its head and leaves its tail below
+   * the fold at every scroll position, and the tail is exactly where the Live
+   * Project and Code buttons are.
+   *
+   * So the offset is a preference, not a rule: when a card is too tall it pins
+   * higher instead, just enough to keep its bottom edge on screen. The deck
+   * peek is what gets sacrificed on short screens, not the actions — and the
+   * stacking itself is preserved either way.
    */
-  const [fitsOnScreen, setFitsOnScreen] = useState(false);
+  const [stickyTop, setStickyTop] = useState<number | null>(null);
 
   useEffect(() => {
     const el = articleRef.current;
@@ -45,10 +49,17 @@ export function ProjectCard({ project, index, total }: ProjectCardProps) {
     const measure = () => {
       const rem =
         parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+      const preferred = (6 + index * 1.5) * rem;
       // offsetHeight, not getBoundingClientRect: the latter reports the
       // *scaled* height while the stacking transform is applied, which would
-      // make an oversized card look like it fits.
-      setFitsOnScreen(el.offsetHeight + (6 + index * 1.5) * rem <= window.innerHeight);
+      // make an oversized card measure as if it fits.
+      const needed = el.offsetHeight + preferred;
+      const breathingRoom = 24;
+      setStickyTop(
+        needed <= window.innerHeight
+          ? preferred
+          : Math.min(preferred, window.innerHeight - el.offsetHeight - breathingRoom),
+      );
     };
 
     measure();
@@ -63,17 +74,19 @@ export function ProjectCard({ project, index, total }: ProjectCardProps) {
     };
   }, [index]);
 
-  const stacks = fitsOnScreen && !prefersReduced;
-
   return (
     <div
       ref={ref}
-      className={stacks ? "sticky" : undefined}
-      style={stacks ? { top: topOffset } : undefined}
+      className={prefersReduced ? undefined : "sticky"}
+      style={
+        prefersReduced || stickyTop === null
+          ? undefined
+          : { top: `${Math.round(stickyTop)}px` }
+      }
     >
       <motion.article
         ref={articleRef}
-        style={stacks ? { scale } : undefined}
+        style={prefersReduced ? undefined : { scale }}
         className="glass glass-hover relative overflow-hidden rounded-[48px] p-[clamp(1.5rem,4vw,3.5rem)]"
       >
         {/* Whole-card link → project repository (buttons below sit above this). */}
