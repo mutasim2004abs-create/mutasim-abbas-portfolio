@@ -180,7 +180,7 @@ export const STAR_PROJECTS: Project[] = [
     repoUrl: "https://github.com/Mutasim-Abbas/LuminaStudy",
     shot: withBase("/projects/luminastudy.png"),
     shotAlt:
-      "Lumina Study dashboard showing the due-today review queue, weekly goal ring, study streak and an activity heatmap",
+      "Lumina Study dashboard in dark mode, showing the Due Today review queue, Recent Study Sets, and a Weekly Progress ring with reviews and study time for the week",
   },
 ];
 
